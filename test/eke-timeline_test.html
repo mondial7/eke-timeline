@@ -21,7 +21,8 @@
 
     <test-fixture id="ChangedPropertyTestFixture">
       <template>
-        <eke-timeline prop1="new-prop1"></eke-timeline>
+        <eke-timeline milestones='[{"label":"mile1","date":"22.03.2018"},{"label":"mile2","date":"23.03.2018"}]'>
+        </eke-timeline>
       </template>
     </test-fixture>
 
@@ -30,19 +31,28 @@
 
         test('instantiating the element with default properties works', function() {
           var element = fixture('BasicTestFixture');
-          assert.equal(element.prop1, 'eke-timeline');
-          var elementShadowRoot = element.shadowRoot;
-          var elementHeader = elementShadowRoot.querySelector('h2');
-          assert.equal(elementHeader.innerHTML, 'Hello eke-timeline!');
+          /**
+           * @todo currently there are public default properties except for 'milestones'
+           */
+          //assert.equal(element.prop1, 'eke-timeline');
+          //var elementShadowRoot = element.shadowRoot;
+          //var elementHeader = elementShadowRoot.querySelector('h2');
+          //assert.equal(elementHeader.innerHTML, '');
         });
 
+        /**
+         * @todo ... failing
+         */
         test('setting a property on the element works', function() {
-          // Create a test fixture
           var element = fixture('ChangedPropertyTestFixture');
-          assert.equal(element.prop1, 'new-prop1');
+          var _milestones = [
+            {label : 'mile1', date : '22.03.2018'},
+            {label : 'mile2', date : '23.03.2018'},
+          ];
+          assert.equal(element.milestones, _milestones);
           var elementShadowRoot = element.shadowRoot;
-          var elementHeader = elementShadowRoot.querySelector('h2');
-          assert.equal(elementHeader.innerHTML, 'Hello new-prop1!');
+          var elementFirstMilestone = elementShadowRoot.querySelector('milestones')[0];
+          assert.equal(elementHeader.innerHTML, 'mile1');
         });
 
       });
