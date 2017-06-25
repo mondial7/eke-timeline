@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+
+    <title>eke-timeline demo</title>
+
+    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+
+    <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
+    <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
+    <link rel="import" href="../eke-timeline.html">
+
+    <custom-style>
+      <style is="custom-style" include="demo-pages-shared-styles">
+      </style>
+    </custom-style>
+  </head>
+  <body>
+    <div class="vertical-section-container centered">
+      <h3>Basic eke-timeline demo</h3>
+      <demo-snippet>
+        <template>
+          <eke-timeline></eke-timeline>
+
+          <script>
+
+          let eke_timeline = document.querySelector('eke-timeline')
+          eke_timeline.milestones = [
+
+            {label : 'mile1', date : '22.03.2018'},
+            {label : 'mile1', date : '22.03.2018'},
+            {label : 'mile1', date : '22.03.2018'},
+            {label : 'mile1', date : '22.03.2018'},
+            {label : 'mile1', date : '22.03.2018'},
+            {label : 'mile1', date : '22.03.2018'},
+
+          ]
+
+          </script>
+        </template>
+      </demo-snippet>
+    </div>
+  </body>
+</html>

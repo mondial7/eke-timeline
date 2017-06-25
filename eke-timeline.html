@@ -1,0 +1,160 @@
+<link rel="import" href="../polymer/polymer-element.html">
+<!-- import template repeater -->
+<link rel="import" href="../polymer/lib/elements/dom-repeat.html">
+
+<dom-module id="eke-timeline">
+  <template>
+    <style>
+
+      :host {
+
+        display: block;
+        box-sizing: border-box;
+        position: relative;
+        width: 100%;
+        text-align: center;
+
+      }
+
+      .timeline__line {
+
+        position: absolute;
+        top: 40px;
+        left: 0px;
+        width: 100%;
+        height: auto;
+        overflow: hidden;
+
+      }
+
+      .timeline__line > span {
+
+        display: inline-block;
+        width: 100%;
+        height: 2px;
+        background-color: #111;
+
+      }
+
+      .timeline__wrapper {
+
+        position: relative;
+        padding: 15px;
+        padding-top: 80px;
+        height: auto;
+        overflow-y: hidden;
+        overflow-x: scroll;
+
+      }
+
+      .timeline__container {
+
+        position: relative;
+        display: flex;
+        justify-content: space-between;
+
+      }
+
+      .milestone {
+
+        flex: auto;
+        position: relative;
+        min-width: 150px;
+        max-width: 250px;
+        margin: 5px 10px;
+        background-color: #f2f2f2;
+        box-shadow: 0px 1px 2px #a9a9a9;
+
+      }
+
+      /* dot on the timeline */
+      .milestone:before {
+
+        content: '';
+        display: block;
+        width: 15px;
+        height: 15px;
+        position: absolute;
+        top: -55px;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: #222;
+        border: 10px solid white;
+        border-radius: 50%;
+        box-shadow: 0px 0px 0px 7px coral;
+
+      }
+
+      .milestone:hover:before {
+
+        background-color: #999;
+
+      }
+
+    </style>
+
+    <div class="timeline__line">
+      <!-- <svg height="100" width="400">
+        <path d="M 0 49 q 100 -10 200 0  M 200 49 q 100 10 200 0" stroke="#333" stroke-width="2" fill="none" />
+      </svg> -->
+      <span></span>
+    </div>
+
+    <div class="timeline__wrapper">
+
+      <div class="timeline__container">
+
+        <template is="dom-repeat" items="[[milestones]]">
+
+          <div class="milestone">
+
+            <p class="milestone__label">[[item.label]]</p>
+            <p class="milestone__date">[[item.date]]</p>
+
+          </div>
+
+        </template>
+
+      </div>
+
+    </div>
+
+  </template>
+
+  <script>
+    /**
+     * `eke-timeline`
+     * Timeline to show your project roadmap
+     *
+     * @customElement
+     * @polymer
+     * @demo demo/index.html
+     */
+    class EkeTimeline extends Polymer.Element {
+      static get is() { return 'eke-timeline'; }
+
+      static get properties() {
+
+        return {
+
+          milestones: {
+            type: Array,
+            value() {
+              return [
+                {label: 'Milestone 1', date: 'Today'},
+                {label: 'Milestone 2', date: '3 Months'},
+              ]
+            }
+          }
+
+        };
+
+      }
+
+
+
+    }
+
+    window.customElements.define(EkeTimeline.is, EkeTimeline);
+  </script>
+</dom-module>
